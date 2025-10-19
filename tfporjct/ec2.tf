@@ -1,10 +1,10 @@
-resource "aws_instance" "BADEV" {
-   ami = "ami-09c813fb71547fc4f"
+resource "aws_instance" "terraform" {
+    count = 3
+   ami = var.ami_id
    vpc_security_group_ids = [aws_security_group.allportsallowed.id]
-   instance_type = "t3.micro"
+   instance_type = var.instance_type
    tags = {
-    Name = "BADEV"
-    Terraform = true
+     Name = var.instances[count.index]
    }
 }
 
